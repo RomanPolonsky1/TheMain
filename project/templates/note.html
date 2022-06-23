@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div style="width: 100%;">
+        <div style="width: 50%; height: 100px; float: left;">
+        <h3 class="title">Notes:</h3>
+            {% for note in notes %}
+                {{ note.note }}<br>
+            {% endfor %}
+        </div>
+        <div style="margin-left: 50%;">
+            <div class="column is-4 is-offset-4">
+	            <h3 class="title">Create a note</h3>
+	            <div class="box">
+
+		        <form method="POST" action="/save_note">
+			    <div class="field">
+				<div class="control">
+					<input class="input is-large" type="note" name="note" placeholder="note" autofocus="">
+				</div>
+			</div>
+			<button class="button is-block is-info is-large is-fullwidth">Save a note</button>
+		</form>
+	</div>
+</div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
