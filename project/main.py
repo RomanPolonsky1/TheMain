@@ -9,15 +9,17 @@ import json
 import jsonpickle
 from json import JSONEncoder
 
-#export FLASK_APP=project
-#export FLASK_DEBUG=1
+# export FLASK_APP=project
+# export FLASK_DEBUG=1
 
 main = Blueprint('main', __name__)
+
 
 @main.route('/')
 def index():
 	return render_template('index.html')
 	# return render_template('password_generator.html', password=password_as_uuid().hex)
+
 
 @main.route('/profile')
 @login_required
@@ -42,6 +44,7 @@ def save_password():
 	# return render_template("password_saved.html", username=current_user.name)
 	return jsonify(user_id=current_user.id, password=password, text=text)
 
+
 @main.route('/save_note', methods=['POST'])
 @login_required
 def save_note():
@@ -57,16 +60,16 @@ def save_note():
 @login_required
 def list_password():
 	passwords = PasswordGenerator.query.filter_by(user_id=current_user.id).all()
-	# return render_template('list_password.html', passwords=passwords)
-	print('---------------')
-	print(passwords[1].__dict__)
-	lists = []
-	for i in passwords:
-		dic = {}
-		dic['text'] = i.text
-		dic['password'] = i.password
-		lists.append(dic)
 	return render_template('list_password.html', passwords=passwords)
+	# print('---------------')
+	# print(passwords[1].__dict__)
+	# lists = []
+	# for i in passwords:
+	# 	dic = {}
+	# 	dic['text'] = i.text
+	# 	dic['password'] = i.password
+	# 	lists.append(dic)
+	# return render_template('list_password.html', passwords=passwords)
 	# return 'okay'
 
 
@@ -85,10 +88,10 @@ def list_passwords_json():
 		lists.append(dic)
 		# print("dic:")
 		# print(dic)
-		lists.append(dic)
+		# lists.append(dic)
 	# print("list:")
-	# print(list)
-	return jsonify(list)
+	# print(lists)
+	return jsonify(lists)
 	# return render_template('list_password.html', passwords=list)
 
 
